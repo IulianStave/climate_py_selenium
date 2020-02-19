@@ -3,7 +3,6 @@ from src.common import common
 from src.SearchTestCase import SearchTest
 from src.HomePageTestCase import HomePageTest
 from src.DataStoreTestCase import DataStoreTest
-from src.ProductsCatalogueTestCase import ProductsCatalogueTest
 
 
 TESTS = [
