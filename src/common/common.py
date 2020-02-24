@@ -3,7 +3,8 @@ import unittest
 import argparse
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium import webdriver
-
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 DRIVERS = {
     'chrome': webdriver.Chrome,
@@ -14,11 +15,21 @@ DRIVERS = {
     'safari': webdriver.Safari,
 }
 
+HEADLESS_OPTIONS = {
+    'chrome': ChromeOptions,
+    'firefox': FirefoxOptions
+}
 
-def get_browser(name, path=None):
-    # browser = DRIVERS[name]
-    # return browser(executable_path=path) if path else browser()
-    return DRIVERS[name]()
+
+def get_browser(name, RunHeadless=False, path=None):
+    browser = DRIVERS[name]
+    if RunHeadless:
+        options = HEADLESS_OPTIONS[name]()
+        options.add_argument("--headless")
+        if path:
+            return browser(options=options, executable_path=path)
+        return browser(options=options)
+    return browser(executable_path=path) if path else browser()
 
 
 def build_cmd_arguments() -> argparse.ArgumentParser:
@@ -42,8 +53,8 @@ def build_cmd_arguments() -> argparse.ArgumentParser:
         help='Verbosity. Default: 1'
         )
     parser.add_argument(
-        '-B', '--browser', default='firefox',
-        help='Browser to use, known: "{}". Default: firefox'.format(
+        '-B', '--browser', default='chrome',
+        help='Browser to use, known: "{}". Default: chrome'.format(
             ', '.join(DRIVERS.keys())
         )
     )
@@ -61,7 +72,10 @@ def build_cmd_arguments() -> argparse.ArgumentParser:
         '-sh', '--screenheight', default=768,
         help='Screen height. Default: 768.'
     )
-
+    parser.add_argument(
+        '-H', '--headless', action='store_true',
+        help='Run headless mode'
+    )
     return parser
 
 

@@ -9,22 +9,16 @@ TESTS = [
     HomePageTest,
     SearchTest,
     DataStoreTest,
-    # ProductsCatalogueTest
 ]
 
 parser = common.build_cmd_arguments()
 args = parser.parse_args()
-driver = common.get_browser(args.browser)
+driver = common.get_browser(args.browser, args.headless, args.browserpath)
 resolution = (args.screenwidth, args.screenheight)
 driver.set_window_size(*resolution)
 
 
 test_suite = unittest.TestSuite()
-"""
-for name in HomePageTest.my_tests():
-    testcase = HomePageTest(name, browser)
-    test_suite.addTest(testcase)
-"""
 for test in TESTS:
     # get the available tests
     for name in test.my_tests():
