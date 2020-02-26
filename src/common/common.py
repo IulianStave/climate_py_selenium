@@ -43,12 +43,6 @@ def build_cmd_arguments() -> argparse.ArgumentParser:
             'edge: MicrosoftWebDriver.exe.'
         )
     )
-    """
-    parser.add_argument(
-        'url', type=str, nargs='?', default=TestData.BASE_URL,
-        help='Site url, eg: https://atmoshpere.copernicus.eu'
-    )
-    """
     parser.add_argument(
         '-U', '--url', type=str,
         help='Site url, eg: https://atmoshpere.copernicus.eu'
