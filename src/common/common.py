@@ -50,7 +50,7 @@ def build_cmd_arguments() -> argparse.ArgumentParser:
     )
     """
     parser.add_argument(
-        '-U', '--url', type=str, default=TestData.BASE_URL,
+        '-U', '--url', type=str,
         help='Site url, eg: https://atmoshpere.copernicus.eu'
     )
     parser.add_argument(

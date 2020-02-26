@@ -16,7 +16,7 @@ class SearchTest(BrowserTestCase):
             Locators.SEARCH_INPUT)
         self.search_input.clear()
         # enter search text from TestData
-        self.search_input.send_keys(TestData.SEARCH_TEXT)
+        self.search_input.send_keys(TestData.SEARCH_TEXT_CLIMATE)
         self.search_input.submit()
         # get the list of elements displayed on search results page
         results = self.home_page.get_elements(Locators.SEARCH_RESULTS)

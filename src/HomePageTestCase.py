@@ -24,7 +24,7 @@ class HomePageTest(BrowserTestCase):
         self.home_page = HomePage(self.driver, self.url)
         cards_list = self.home_page.get_elements(Locators.HOME_CARD)
         first_two_cards = [card.text for card in cards_list[:2]]
-        self.assertEqual(first_two_cards, TestData.TOP_CARDS)
+        self.assertEqual(first_two_cards, TestData.TOP_CARDS_CLIMATE)
 
     def test_homepage_top_menu_data_link(self):
         """ Checks for the Data link in the header

@@ -1,10 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
-
 from src.data.TestData import TestData
-from src.data.Locators import Locators
-
 
 TIMEOUT = 20
 
@@ -73,8 +70,8 @@ class BasePage():
         ActionChains(self.driver).move_to_element(element).perform()
 
     def switch_to_new_window(self):
-        WebDriverWait(self.driver, TIMEOUT).until(
-            EC.number_of_windows_to_be(2))
+        # WebDriverWait(self.driver, TIMEOUT).until(
+        #     EC.number_of_windows_to_be(2))
         window_after = self.driver.window_handles[1]
         self.driver.switch_to.window(window_after)
 

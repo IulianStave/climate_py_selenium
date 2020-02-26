@@ -3,32 +3,36 @@ import sys
 from src.common import common
 from src.SearchTestCase import SearchTest
 from src.HomePageTestCase import HomePageTest
-from src.DataStoreTestCase import DataStoreTest
+# from src.DataStoreTestCase import DataStoreTest
 
 
+BASE_URL = 'https://climate.copernicus.eu'
 TESTS = [
     HomePageTest,
     SearchTest,
-    DataStoreTest,
+    # DataStoreTest,
 ]
+
+URL_EXT = {
+    HomePageTest: '',
+    SearchTest: '',
+}
 
 parser = common.build_cmd_arguments()
 args = parser.parse_args()
 driver = common.get_browser(args.browser, args.headless, args.browserpath)
 resolution = (args.screenwidth, args.screenheight)
 driver.set_window_size(*resolution)
-# print('Passed URL = ', args.url)
+home_url = args.url if args.url else BASE_URL
 
 test_suite = unittest.TestSuite()
 for test in TESTS:
     # get the available tests
     for name in test.my_tests():
-        test_case = test(name, driver, args.url)
+        test_case = test(name, driver, home_url + URL_EXT[test])
         test_suite.addTest(test_case)
 
-# unittest.TextTestRunner(verbosity=args.verbose).run(test_suite)
 runner = unittest.TextTestRunner(verbosity=args.verbose)
-# runner.run(test_suite)
 code = not runner.run(test_suite).wasSuccessful()
 driver.quit()
 sys.exit(code)
