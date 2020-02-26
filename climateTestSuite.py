@@ -1,4 +1,5 @@
 import unittest
+import sys
 from src.common import common
 from src.SearchTestCase import SearchTest
 from src.HomePageTestCase import HomePageTest
@@ -25,5 +26,9 @@ for test in TESTS:
         test_case = test(name, driver)
         test_suite.addTest(test_case)
 
-unittest.TextTestRunner(verbosity=args.verbose).run(test_suite)
+# unittest.TextTestRunner(verbosity=args.verbose).run(test_suite)
+runner = unittest.TextTestRunner(verbosity=args.verbose)
+# runner.run(test_suite)
+code = not runner.run(test_suite).wasSuccessful()
 driver.quit()
+sys.exit(code)
