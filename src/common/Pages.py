@@ -86,28 +86,14 @@ class BasePage():
 class HomePage(BasePage):
     """Home Page"""
 
-    def __init__(self, driver):
+    def __init__(self, driver, url):
         super().__init__(driver)
-        self.driver.get(TestData.BASE_URL)
-
-    def search(self):
-        self.driver.find_element(*Locators.SEARCH_TOGGLE).click()
-        self.driver.find_element(*Locators.SEARCH_INPUT).clear()
-        self.enter_text(Locators.SEARCH_INPUT, TestData.SEARCH_TEXT)
-        self.click(Locators.SEARCH_SUBMIT_BUTTON)
+        self.driver.get(url)
 
 
 class DataStorePage(BasePage):
-    """Data Page"""
+    """Data Store Page"""
 
     def __init__(self, driver):
         super().__init__(driver)
         self.driver.get(TestData.DATA_STORE_URL)
-
-
-class CataloguePage(BasePage):
-    """Catalogue Page"""
-
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver.get(TestData.CATALOGUE_URL)

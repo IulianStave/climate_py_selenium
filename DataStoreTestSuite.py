@@ -1,14 +1,10 @@
 import unittest
 import sys
 from src.common import common
-from src.SearchTestCase import SearchTest
-from src.HomePageTestCase import HomePageTest
 from src.DataStoreTestCase import DataStoreTest
 
 
 TESTS = [
-    HomePageTest,
-    SearchTest,
     DataStoreTest,
 ]
 
@@ -17,7 +13,7 @@ args = parser.parse_args()
 driver = common.get_browser(args.browser, args.headless, args.browserpath)
 resolution = (args.screenwidth, args.screenheight)
 driver.set_window_size(*resolution)
-# print('Passed URL = ', args.url)
+print('Passed URL = ', args.url)
 
 test_suite = unittest.TestSuite()
 for test in TESTS:

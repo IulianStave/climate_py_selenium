@@ -8,7 +8,7 @@ class SearchTest(BrowserTestCase):
     def test_search_by_text(self):
         """ Clicks the search toggle, perform search, asserts counter works
         """
-        self.home_page = HomePage(self.driver)
+        self.home_page = HomePage(self.driver, self.url)
         self.search_toggle = self.home_page.is_enabled(
             Locators.SEARCH_TOGGLE)
         self.search_toggle.click()
