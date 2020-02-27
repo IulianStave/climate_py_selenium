@@ -1,8 +1,8 @@
 import unittest
 import sys
 from src.common import common
-from src.SearchTestCase import SearchTest
-from src.HomePageTestCase import HomePageTest
+from src.SearchCliTestCase import SearchTest
+from src.HomePageCliTestCase import HomePageTest
 # from src.DataStoreTestCase import DataStoreTest
 
 
